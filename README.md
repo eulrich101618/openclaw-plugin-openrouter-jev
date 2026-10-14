@@ -91,6 +91,30 @@ Results never authorize actions; the calling agent decides how to use them.
 
 Unavailable reasons: `credentials-unavailable`, `transport`, `authentication`, `rate-limited` (with `retryAfterMs`), `unsupported-input`, `invalid-response`.
 
+## Workaround (v0.1.1 shows `not-configured`)
+
+v0.1.1 on ClawHub is missing `contracts.decisionProviders`, so the Gateway
+ignores the provider. Fix your local install until v0.1.2+ is public:
+
+```bash
+# 1. Patch the installed manifest
+python3 -c "
+import json
+p='$HOME/.openclaw/extensions/openrouter-jev/openclaw.plugin.json'
+d=json.load(open(p))
+d['contracts']={'decisionProviders':['openrouter-jev']}
+json.dump(d,open(p,'w'),indent=2)
+print('patched')
+"
+
+# 2. Re-consent and restart the Gateway
+openclaw plugins disable openrouter-jev
+openclaw plugins enable openrouter-jev --accept-capabilities
+# then: Gateway restart (Control UI or /restart)
+```
+
+Verify with `openclaw plugins doctor` (no `openrouter-jev` line = good).
+
 ## Development
 
 ```bash
