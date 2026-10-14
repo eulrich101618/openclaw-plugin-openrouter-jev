@@ -15,7 +15,12 @@ npm run validate
 
 ## Provider Setup
 
-The generated provider uses an OpenAI-compatible API shape, `OPENROUTER_JEV_API_KEY` for API-key auth, and `https://api.example.com/v1` as a placeholder base URL. Update `src/index.ts` with your provider's real base URL, model list, docs route, and credential copy before publishing.
+Decision provider `openrouter-jev` via `POST https://openrouter.ai/api/alpha/decisions`.
+
+- Models: `openrouter/typesafe/jev-1.13` (default), `jev-latest` → `~typesafe/jev-latest`
+- Auth: plugin `config.apiKey`, else env `OPENROUTER_API_KEY` / `OPENROUTER_JEV_API_KEY`
+- Mapping: boolean → `noul` (`instructions` Pflicht), choice, score
+- Live-getestet 2026-10-14: 200 OK, `typesafe/jev-1.13-20260917`
 
 ## First Publish
 
