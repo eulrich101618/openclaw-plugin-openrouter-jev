@@ -1,0 +1,65 @@
+{
+  "name": "openclaw-plugin-openrouter-jev",
+  "version": "0.1.0",
+  "description": "OpenClaw provider plugin for OpenRouter Jev Decisions.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run --config ./vitest.config.ts",
+    "validate": "npm run build && clawhub package validate . --out .clawhub-validation"
+  },
+  "files": [
+    "dist",
+    "openclaw.plugin.json",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "openclaw": ">=2026.9.9"
+  },
+  "peerDependenciesMeta": {
+    "openclaw": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "clawhub": "latest",
+    "openclaw": "latest",
+    "typescript": "7.0.2",
+    "vitest": "^3.2.0"
+  },
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.9.9"
+    },
+    "build": {
+      "openclawVersion": "2026.9.9"
+    },
+    "install": {
+      "clawhubSpec": "clawhub:openclaw-plugin-openrouter-jev",
+      "defaultChoice": "clawhub",
+      "minHostVersion": ">=2026.9.9"
+    },
+    "release": {
+      "publishToClawHub": true
+    }
+  },
+  "pluginInspector": {
+    "version": 1,
+    "plugin": {
+      "id": "openrouter-jev",
+      "priority": "high",
+      "seams": [
+        "plugin-runtime"
+      ],
+      "sourceRoot": ".",
+      "expect": {
+        "registrations": [
+          "registerProvider"
+        ]
+      }
+    }
+  }
+}
