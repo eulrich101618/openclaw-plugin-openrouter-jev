@@ -18,7 +18,9 @@
   "configSchema": {
     "type": "object",
     "additionalProperties": true,
-    "properties": {}
+    "properties": {
+      "apiKey": { "type": "string", "description": "OpenRouter API key with Jev access. Prefer Gateway secrets over plaintext." }
+    }
   },
   "activation": {
     "onStartup": true

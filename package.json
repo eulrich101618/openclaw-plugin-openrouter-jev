@@ -57,7 +57,7 @@
       "sourceRoot": ".",
       "expect": {
         "registrations": [
-          "registerProvider"
+          "registerDecisionProvider"
         ]
       }
     }
