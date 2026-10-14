@@ -27,7 +27,7 @@ function resolveApiKey(api: any): string | undefined {
   const cfg = (api?.pluginConfig ?? {}) as Record<string, unknown>;
   if (typeof cfg.apiKey === "string" && cfg.apiKey) return cfg.apiKey;
   const env = (globalThis as any)?.process?.env as Record<string, string> | undefined;
-  return env?.OPENROUTER_API_KEY || env?.OPENROUTER_JEV_API_KEY || undefined;
+  return env?.OPENROUTER_API_KEY || undefined;
 }
 
 function mapModel(model: string): string {

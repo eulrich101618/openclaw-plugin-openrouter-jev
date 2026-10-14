@@ -22,17 +22,20 @@ It does not provide chat, completion, or embedding models.
 
 ## Install
 
-Via ClawHub (recommended):
+Via ClawHub:
 
 ```bash
-openclaw skills install openclaw-plugin-openrouter-jev
+openclaw plugins install clawhub:openclaw-plugin-openrouter-jev
 ```
 
-Or manually:
+Or from source:
 
 ```bash
+git clone https://github.com/eulrich101618/openclaw-plugin-openrouter-jev.git
+cd openclaw-plugin-openrouter-jev
 npm install
 npm run build
+openclaw plugins install ./
 ```
 
 ## Configuration
@@ -42,14 +45,13 @@ Set the API key in plugin config or via environment. Precedence:
 1. Prepared plugin secret (`config.apiKey` via Gateway secrets)
 2. `config.apiKey` in plugin config
 3. `OPENROUTER_API_KEY` environment variable
-4. `OPENROUTER_JEV_API_KEY` environment variable
 
 Gateway example:
 
 ```bash
-openclaw secrets store set OPENROUTER_JEV_API_KEY --kind secret
+openclaw secrets store set OPENROUTER_API_KEY --kind secret
 openclaw config set plugins.entries.openrouter-jev.config.apiKey \
-  --ref-provider default --ref-source store --ref-id OPENROUTER_JEV_API_KEY
+  --ref-provider default --ref-source store --ref-id OPENROUTER_API_KEY
 openclaw config set plugins.entries.openrouter-jev.enabled true
 ```
 

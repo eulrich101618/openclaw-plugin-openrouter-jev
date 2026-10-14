@@ -21,22 +21,18 @@ const batchBoolean = {
 };
 
 describe("openrouter-jev decision provider", () => {
-  const envKey = process.env.OPENROUTER_JEV_API_KEY;
-  const envFallback = process.env.OPENROUTER_API_KEY;
+  const envKey = process.env.OPENROUTER_API_KEY;
   const realFetch = globalThis.fetch;
 
   beforeEach(() => {
     vi.restoreAllMocks();
-    delete process.env.OPENROUTER_JEV_API_KEY;
     delete process.env.OPENROUTER_API_KEY;
   });
 
   afterEach(() => {
     globalThis.fetch = realFetch;
-    if (envKey === undefined) delete process.env.OPENROUTER_JEV_API_KEY;
-    else process.env.OPENROUTER_JEV_API_KEY = envKey;
-    if (envFallback === undefined) delete process.env.OPENROUTER_API_KEY;
-    else process.env.OPENROUTER_API_KEY = envFallback;
+    if (envKey === undefined) delete process.env.OPENROUTER_API_KEY;
+    else process.env.OPENROUTER_API_KEY = envKey;
   });
 
   it("registers openrouter-jev and is ready", () => {
@@ -52,7 +48,7 @@ describe("openrouter-jev decision provider", () => {
   });
 
   it("returns unsupported-input for unknown question type", async () => {
-    process.env.OPENROUTER_JEV_API_KEY = "test-key";
+    process.env.OPENROUTER_API_KEY = "test-key";
     const provider = collectProvider();
     const res = await provider.evaluate(
       { state: {}, questions: { q: { type: "weird" } } },
@@ -62,7 +58,7 @@ describe("openrouter-jev decision provider", () => {
   });
 
   it("posts to decisions endpoint and maps boolean answer", async () => {
-    process.env.OPENROUTER_JEV_API_KEY = "test-key";
+    process.env.OPENROUTER_API_KEY = "test-key";
     const provider = collectProvider();
     const fetchMock = vi.fn(async () =>
       new Response(
@@ -87,7 +83,7 @@ describe("openrouter-jev decision provider", () => {
   });
 
   it("maps jev-latest model id", async () => {
-    process.env.OPENROUTER_JEV_API_KEY = "test-key";
+    process.env.OPENROUTER_API_KEY = "test-key";
     const provider = collectProvider();
     const fetchMock = vi.fn(async () =>
       new Response(JSON.stringify({ answers: { q1: { noul: 0.5 } } }), {
@@ -103,7 +99,7 @@ describe("openrouter-jev decision provider", () => {
   });
 
   it("maps choice and score answers", async () => {
-    process.env.OPENROUTER_JEV_API_KEY = "test-key";
+    process.env.OPENROUTER_API_KEY = "test-key";
     const provider = collectProvider();
     const fetchMock = vi.fn(async () =>
       new Response(
@@ -136,7 +132,7 @@ describe("openrouter-jev decision provider", () => {
   });
 
   it("maps http errors to unavailable reasons", async () => {
-    process.env.OPENROUTER_JEV_API_KEY = "test-key";
+    process.env.OPENROUTER_API_KEY = "test-key";
     const provider = collectProvider();
 
     globalThis.fetch = (async () => new Response("{}", { status: 401 })) as any;
