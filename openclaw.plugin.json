@@ -4,22 +4,43 @@
   "description": "Jev decisions via OpenRouter Decisions API.",
   "version": "0.1.0",
   "contracts": {
-    "decisionProviders": ["openrouter-jev"]
+    "decisionProviders": [
+      "openrouter-jev"
+    ]
   },
   "decisionModels": [
-    { "provider": "openrouter-jev", "id": "jev-1.13", "name": "Jev 1.13 via OpenRouter" },
-    { "provider": "openrouter-jev", "id": "jev-latest", "name": "Jev Latest via OpenRouter" }
+    {
+      "provider": "openrouter-jev",
+      "id": "jev-1.13",
+      "name": "Jev 1.13 via OpenRouter"
+    },
+    {
+      "provider": "openrouter-jev",
+      "id": "jev-latest",
+      "name": "Jev Latest via OpenRouter"
+    }
   ],
   "configContracts": {
     "secretInputs": {
-      "paths": [{ "path": "apiKey", "expected": "string" }]
+      "paths": [
+        {
+          "path": "apiKey",
+          "expected": "string"
+        }
+      ]
     }
   },
   "configSchema": {
     "type": "object",
     "additionalProperties": true,
     "properties": {
-      "apiKey": { "type": "string", "description": "OpenRouter API key with Jev access. Prefer Gateway secrets over plaintext." }
+      "apiKey": {
+        "description": "OpenRouter API key with Jev access. Prefer Gateway secrets over plaintext.",
+        "type": [
+          "string",
+          "object"
+        ]
+      }
     }
   },
   "activation": {
