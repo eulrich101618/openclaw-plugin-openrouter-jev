@@ -2,12 +2,7 @@
   "id": "openrouter-jev",
   "name": "OpenRouter Jev Decisions",
   "description": "Jev decisions via OpenRouter Decisions API.",
-  "version": "0.1.0",
-  "contracts": {
-    "decisionProviders": [
-      "openrouter-jev"
-    ]
-  },
+  "version": "0.1.1",
   "decisionModels": [
     {
       "provider": "openrouter-jev",

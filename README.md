@@ -1,5 +1,7 @@
 # OpenRouter Jev Decisions
 
+Repository: https://github.com/eulrich101618/openclaw-plugin-openrouter-jev
+
 Decision provider plugin for [OpenClaw](https://openclaw.ai) that routes structured evaluations through the [OpenRouter Decisions API](https://openrouter.ai/docs) using Jev models.
 
 ## What it does
